@@ -33,7 +33,7 @@
                 <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
                 <br /><br />
               </div>
-
+              <div id="result">local storage</div>
             <div>
                 <!-- shouldn't be using tables, but div no repeat seems to be broken? -->
                 <div width="438" height="700" class="the_wheel" align="center" valign="center">
@@ -44,7 +44,20 @@
             </div>
         </div>
         <script>
-            localStorage.clear();
+          
+
+          if (localStorage.getItem("characteristic") == "Disabled"){
+            document.getElementById("result").innerHTML = "gonna forward";
+            window.location.assign("index.html")
+          }else{console.log("not null")}
+
+          console.log(localStorage.getItem("characteristic"))
+          if (localStorage.getItem("characteristic") == null){
+            document.getElementById("result").innerHTML = "gonna forward";
+            window.location.assign("index.html")
+          }
+
+            document.getElementById("result").innerHTML = localStorage.getItem("characteristic");
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
                 'numSegments'  : 9,     // Specify number of segments.
@@ -78,15 +91,6 @@
             // -------------------------------------------------------
             // Function to handle the onClick on the power buttons.
             // ------------------------------------------------------
-
-
-            //if disability is the scenario, change the link to disability
-
-           
-   
-   
-
-
             function toggle(id) {
                 var x = document.getElementById(id);
                 if (x.style.display === "none") {
@@ -109,14 +113,10 @@
    
    //toggle('cards');
    //toggle('spinner');
-   //var nextpage = document.getElementById('nextpage');
-  //nextpage.setAttribute('href', 'disability.html');
-  if(indicatedSegment.text == "Disability")
-   indicatedSegment.text
-   $("#nextpage").attr("href","disability.html");
+   
    $('.pop-up').addClass('open');
    $(".element").text(indicatedSegment.text);
-   localStorage.setItem("characteristic", indicatedSegment.text);
+   console.log("before toggle chaps")
 
    
    //openpopup();
@@ -148,7 +148,7 @@
         <div class="data">
           <div class="content">
             <span class="author">Scenario Card</span>
-            <h1 class="title"><a href="#">This is a clinical scenaro</a></h1>
+            <h1 class="title"><a href="#"><span id="disability">This is a clinical scenaro</span></a></h1>
             <p class="text">This is a clinical scenario description </p>
             <label for="show-menu" class="menu-button"><span></span></label>
           </div>
@@ -240,8 +240,7 @@
 
       <div class="subscribe">
         <h1>Some information about the protected charateristic</h1>
-        <a id ="nextpage" href="part2.html">
-        <span class="close">close</span></a>
+        <span class="close" onclick="closepopup();">close</span>
       </div>
     </div>
   </div>

@@ -23,120 +23,46 @@
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     </head>
-    <body>
-        <div align="center" class="heading" id ="spinner">
 
 
-            <div class="nine" class="heading">
-                <h1>The Equality Act Demo<span>Spin the Wheel!</span></h1>
-                <br />
-                <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
-                <br /><br />
-              </div>
+    <script>
 
-            <div>
-                <!-- shouldn't be using tables, but div no repeat seems to be broken? -->
-                <div width="438" height="700" class="the_wheel" align="center" valign="center">
-                  <canvas id="canvas" width="434" height="700">
-                      <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                   </canvas>
-               </div>
-            </div>
-        </div>
-        <script>
-            localStorage.clear();
-            // Create new wheel object specifying the parameters at creation time.
-            let theWheel = new Winwheel({
-                'numSegments'  : 9,     // Specify number of segments.
-                'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
-                'textFontSize' : 14,    // Set font size as desired.
-                'segments'     :        // Define segments including colour and text.
-                [
-                   {'fillStyle' : '#eae56f', 'text' : 'Age'},
-                   {'fillStyle' : '#89f26e', 'text' : 'Gender Reasignment'},
-                   {'fillStyle' : '#7de6ef', 'text' : 'Married/civil partnership'},
-                   {'fillStyle' : '#e7706f', 'text' : 'Pregnancy and maternity'},
-                   {'fillStyle' : '#eae56f', 'text' : 'Race'},
-                   {'fillStyle' : '#89f26e', 'text' : 'Religion'},
-                   {'fillStyle' : '#7de6ef', 'text' : 'Sex'},
-                   {'fillStyle' : '#e7706f', 'text' : 'Sexual Orientation'},
-                   {'fillStyle' : '#89f26e', 'text' : 'Disability'}
-                ],
-                'animation' :           // Specify the animation to use.
-                {
-                    'type'     : 'spinToStop',
-                    'duration' : 5,     // Duration in seconds.
-                    'spins'    : 8,     // Number of complete spins.
-                    'callbackFinished' : alertPrize
-                }
-            });
+function randomDisability() {
+  // Generate a list of items
+  const items = ['Hearing Impairment', 'Hearing Impairment', 'Depression', 'Anxiety', 'Wheelchair User', 'Cancer Care', 'ADHD', 'ASD', 'Dementa', 'Long-Term Neurological Disorder'];
 
-            // Vars used by the code in this page to do power controls.
-            let wheelPower    = 0;
-            let wheelSpinning = false;
+  // Pick a random item from the list
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const randomItem = items[randomIndex];
 
-            // -------------------------------------------------------
-            // Function to handle the onClick on the power buttons.
-            // ------------------------------------------------------
-
-
-            //if disability is the scenario, change the link to disability
-
-           
-   
-   
-
-
-            function toggle(id) {
-                var x = document.getElementById(id);
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                x.style.display = "none";
-                }
-
-        //test to delete 
-        
-        } 
-
-        function alertPrize(indicatedSegment)
-{
-    // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-   // alert("The Protected Characteristic is " + indicatedSegment.text);
-    //alert("Write some code to do a scenario card");
-   // alert("Write some code to do a Nenber of practice");
-   
-   
-   //toggle('cards');
-   //toggle('spinner');
-   //var nextpage = document.getElementById('nextpage');
-  //nextpage.setAttribute('href', 'disability.html');
-  if(indicatedSegment.text == "Disability")
-   indicatedSegment.text
-   $("#nextpage").attr("href","disability.html");
-   $('.pop-up').addClass('open');
-   $(".element").text(indicatedSegment.text);
-   localStorage.setItem("characteristic", indicatedSegment.text);
-
-   
-   //openpopup();
+  // Return the random item
+  return randomItem;
 }
-        </script>
 
-<br/><br/>
+function deal() {
+  // Generate a list of items
+  const disability = randomDisability();
+  alert(disability)
+  $("#card-dec").text(disability);
+  // now use jquery to deal the cards
+}
+
+    </script>
+    <body>
+      
 
 
-<div align="center" class="heading" id ="cards" style='display:none; text-align: center;'>
+<div align="center" class="heading" id ="cards" style='text-align: center;'>
   <div class="nine" class="heading">
-      <h1>Scenario and practitioner<span>Pick your cards</span></h1>
+      <h1>Disability<span>Deal a Card</span></h1>
       <br />
       Now deal some cards to discuss in the context of <text class="element"></text><br/><br/>
-      <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="toggle('deal')">Deal the cards</button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="deal()">Deal a card</button>
       <br /><br />
     </div>
-</div>
 
-<div id='deal' style='display:none; text-align: center;'>
+
+<div id='deal' style='text-align: center;'>
 <div class="row">
     <div class="example-1 card">
       <div class="wrapper">
@@ -175,8 +101,8 @@
           <div class="data">
             <div class="content">
               <span class="author">Member of practice</span>
-              <h1 class="title"><a href="#">This is a member of practice</a></h1>
-              <p class="text">This is a member of practice description </p>
+              <h1 class="title" id="card-dec"><a href="#">This is a member of practice</a></h1>
+              <p  class="text">This is a member of practice description </p>
               <label for="show-menu" class="menu-button"><span></span></label>
             </div>
             <input type="checkbox" id="show-menu" />
@@ -195,7 +121,7 @@
   <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.reload(); ">Reload the demo</button>
  
 </div>
-  
+</div>
 
 <div id='wrapper' style='display:none; text-align: center;'>
     <div class="card" style='display: inline-block; vertical-align: top;'>
@@ -240,8 +166,7 @@
 
       <div class="subscribe">
         <h1>Some information about the protected charateristic</h1>
-        <a id ="nextpage" href="part2.html">
-        <span class="close">close</span></a>
+        <span class="close" onclick="closepopup();">close</span>
       </div>
     </div>
   </div>

@@ -1,11 +1,4 @@
 
-
-$('.pop-up .close').click(function(){
-  $('.pop-up').removeClass('open');
-  toggle('cards');
-  toggle('spinner');
-});
-
 function openpopup() {
   
   $('.pop-up').addClass('open');
@@ -13,3 +6,12 @@ function openpopup() {
   
 }
 
+
+function closepopup() {
+  
+  $('.pop-up').removeClass('open');
+  //document.getElementById('pops').addClass('open');  // Remove all colours from the power level indicators.
+  toggle('cards');
+  toggle('spinner');
+
+}
