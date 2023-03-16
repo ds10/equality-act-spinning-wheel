@@ -24,8 +24,8 @@ function powerSelected(powerLevel)
         wheelPower = powerLevel;
 
         // Light up the spin button by changing it's source image and adding a clickable class to it.
-        document.getElementById('spin_button').src = "spin_on.png";
-        document.getElementById('spin_button').className = "clickable";
+     //  document.getElementById('spin_button').src = "spin_on.png";
+      //  document.getElementById('spin_button').className = "clickable";
     }
 }
 
@@ -47,8 +47,8 @@ function startSpin()
         }
 
         // Disable the spin button so can't click again while wheel is spinning.
-        document.getElementById('spin_button').src       = "spin_off.png";
-        document.getElementById('spin_button').className = "";
+     //   document.getElementById('spin_button').src       = "spin_off.png";
+    //    document.getElementById('spin_button').className = "";
 
         // Begin the spin animation by calling startAnimation on the wheel object.
         theWheel.startAnimation();
