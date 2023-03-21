@@ -31,7 +31,7 @@
     dict["rearrange"] = "Patient asking staff member if they can rearrange an appointment";
     dict["feedback"] = "Student receiving feedback/appraisal from their clinical mentor";
     dict["clinician"] = "A carer advising a clinician about a problem that the patient is having";
-    dict["inappropriate"] = "An inappropriate comment is found in the patient’s medical notes";
+    dict["inappropriate"] = "An inappropriate comment is found in the patient's medical notes";
     dict["patientcomplains"] = "Patient complains about another patient in the same waiting room";
     dict["patientcomplaining"] = "Patient complaining about inability to access services at community clinic";
 
@@ -53,12 +53,13 @@ function deal() {
   const randomKey = keys[randomIndex];
   const randomValue = dict[randomKey];
 
-  alert(randomKey)
   $("#card-dec").text(randomValue);
-  $("#card-image").addClass('patientcomplains');
+  $("#card-image").addClass(randomKey);
 
   toggle('deal')
   toggle('btnDeal')
+
+  sessionStorage.setItem("scenario",randomValue);
 
 }
 
@@ -70,13 +71,13 @@ function deal() {
 <div align="center" class="heading" id ="cards" style='text-align: center;'>
   <div class="nine" class="heading">
       <h1>Scenario<span>Deal a scenario Card</span></h1>
+
       <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <text class="element"></text><br/><br/>
       <button id="btnDeal" type="button" class="btn btn-secondary btn-lg btn-block" onclick="deal()">Deal a card</button>   
    </div>
-
 
   <div id='deal' style='display:none;text-align: center;'>
     
@@ -91,7 +92,9 @@ function deal() {
           <div class="data">
             <div class="content">
               <span class="author">Scenario Card</span>
+              <div class="three" class="heading">
               <h1 class="title" id="card-dec"><a href="#"></a></h1>
+              </div>
               <p class="text"> </p>
             </div>
             <input type="checkbox" id="show-menu" />
@@ -99,7 +102,7 @@ function deal() {
         </div>
       </div>
       <br />
-      <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.reload(); ">See the results</button>
+      <a href="results.html" type="button" class="btn btn-secondary btn-lg btn-block" >See the results</a>
     </div>
   </div>
 </div>
